@@ -16,6 +16,6 @@ if warning.jpg is omitted.
 
 ## Default alarm
 
-`03.wav` is copied unchanged from the user-provided file
-`F:\project1\alarm\03.wav`. It is bundled as the default warning sound.
+`00.wav` contains the unchanged audio from the user-provided file
+`F:\project1\alarm\03.wav`, renamed for the bundled default warning sound.
 Its source license has not been provided; it is not claimed to be MIT-licensed.

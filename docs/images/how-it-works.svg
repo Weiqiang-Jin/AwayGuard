@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="660" viewBox="0 0 1200 660" role="img" aria-labelledby="title desc">
+  <title id="title">AwayGuard monitoring cycle</title>
+  <desc id="desc">Start monitoring, wait through the default ten-second countdown, then minimize and monitor. Mouse or keyboard activity restores the window and sounds the alarm. Ten idle seconds minimize it again. New input resets the idle timer. Stop monitoring ends the cycle.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#111b2e"/><stop offset="1" stop-color="#090f1c"/></linearGradient>
+    <linearGradient id="alert" x2="1" y2="1"><stop stop-color="#382234"/><stop offset="1" stop-color="#241d30"/></linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1 9 5 1 9" fill="none" stroke="#7588a7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="return" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1 9 5 1 9" fill="none" stroke="#64dbc2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      text {font-family: 'Segoe UI', Arial, sans-serif;}
+      .label {font-size:12px; font-weight:700; letter-spacing:2px; fill:#8fa2c0;}
+      .heading {font-size:21px; font-weight:650; fill:#f3f6fc;}
+      .body {font-size:16px; fill:#b6c3d8;}
+      .small {font-size:14px; fill:#8fa2c0;}
+      .icon {fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;}
+    </style>
+  </defs>
+  <rect width="1200" height="660" rx="24" fill="url(#bg)"/>
+  <rect x="1" y="1" width="1198" height="658" rx="23" fill="none" stroke="#28344b"/>
+  <text x="40" y="43" class="label" fill="#64dbc2">AWAYGUARD / HOW IT WORKS</text>
+  <text x="40" y="86" fill="#f3f6fc" font-size="32" font-weight="700">One click. A continuous watch.</text>
+  <text x="40" y="117" class="body">Automatic alerts when someone interacts. Quiet again when they stop.</text>
+  <rect x="957" y="38" width="203" height="32" rx="16" fill="#1c2a40"/>
+  <circle cx="976" cy="54" r="4" fill="#64dbc2"/>
+  <text x="991" y="59" fill="#c5d2e6" font-size="12" font-weight="600">DESKTOP + COMBINED</text>
+
+  <!-- Four stages with equal spacing and consistent icon treatment. -->
+  <rect x="40" y="158" width="248" height="226" rx="18" fill="#172236" stroke="#30405a"/>
+  <rect x="60" y="178" width="48" height="48" rx="13" fill="#263957"/>
+  <path d="M79 190 95 202 79 214Z" class="icon" stroke="#98baff"/>
+  <text x="245" y="207" class="label">01</text>
+  <text x="60" y="263" class="heading">Start monitoring</text>
+  <text x="60" y="295" class="body">Choose a mode.</text>
+  <text x="60" y="320" class="body">Click the start button.</text>
+  <text x="60" y="358" class="small">You control when it begins.</text>
+
+  <rect x="328" y="158" width="248" height="226" rx="18" fill="#172236" stroke="#30405a"/>
+  <rect x="348" y="178" width="48" height="48" rx="13" fill="#263957"/>
+  <circle cx="372" cy="202" r="14" class="icon" stroke="#98baff"/>
+  <path d="M372 192v11l7 4" class="icon" stroke="#98baff"/>
+  <text x="533" y="207" class="label">02</text>
+  <text x="348" y="263" class="heading">Leave your desk</text>
+  <text x="348" y="295" class="body">A 10-second countdown</text>
+  <text x="348" y="320" class="body">gives you time to step away.</text>
+  <text x="348" y="358" class="small">Adjustable from 3 to 120s.</text>
+
+  <rect x="616" y="158" width="248" height="226" rx="18" fill="#132d30" stroke="#34756e"/>
+  <rect x="636" y="178" width="48" height="48" rx="13" fill="#1d4946"/>
+  <path d="m660 187 13 5v10c0 9-13 15-13 15s-13-6-13-15v-10Z" class="icon" stroke="#64dbc2"/>
+  <path d="m654 202 4 4 8-9" class="icon" stroke="#64dbc2"/>
+  <text x="821" y="207" class="label">03</text>
+  <text x="636" y="263" class="heading">Guard in background</text>
+  <text x="636" y="295" class="body">The window minimizes.</text>
+  <text x="636" y="320" class="body">Input detection stays on.</text>
+  <circle cx="641" cy="353" r="4" fill="#64dbc2"/>
+  <text x="653" y="358" fill="#8de8d4" font-size="14">Waiting for mouse / keyboard</text>
+
+  <rect x="904" y="158" width="248" height="226" rx="18" fill="url(#alert)" stroke="#915065"/>
+  <rect x="924" y="178" width="48" height="48" rx="13" fill="#573044"/>
+  <path d="m948 187 16 28h-32Z M948 197v8 M948 210v1" class="icon" stroke="#ffa1b2"/>
+  <text x="1109" y="207" class="label">04</text>
+  <text x="924" y="263" class="heading">Show &amp; sound alarm</text>
+  <text x="924" y="295" class="body">New activity opens the UI</text>
+  <text x="924" y="320" class="body">and triggers a warning.</text>
+  <text x="924" y="358" fill="#ffb0be" font-size="14">Activity resets the idle timer.</text>
+
+  <g fill="none" stroke="#7588a7" stroke-width="2" marker-end="url(#arrow)">
+    <path d="M291 271h29"/>
+    <path d="M579 271h29"/>
+    <path d="M867 271h29"/>
+  </g>
+
+  <!-- Return to armed state after inactivity, without stopping monitoring. -->
+  <path d="M1028 385v43q0 20-20 20H760q-20 0-20-20v-33" fill="none" stroke="#64dbc2" stroke-width="2" marker-end="url(#return)"/>
+  <rect x="777" y="431" width="215" height="34" rx="17" fill="#183c3b" stroke="#34756e"/>
+  <text x="884" y="453" text-anchor="middle" fill="#95ecd7" font-size="14" font-weight="600">No activity for 10 seconds</text>
+  <text x="40" y="424" class="label">THE LOOP CONTINUES</text>
+  <text x="40" y="453" class="body">Alert. Minimize. Watch again.</text>
+
+  <line x1="40" y1="489" x2="1152" y2="489" stroke="#28344b"/>
+  <rect x="40" y="515" width="536" height="106" rx="14" fill="#141f31"/>
+  <text x="60" y="544" fill="#dce7f7" font-size="15" font-weight="700">SOUND WITHOUT OVERLAP</text>
+  <text x="60" y="572" class="body">While playing, the alarm is never restarted.</text>
+  <text x="60" y="596" class="body">Once it ends, new input can trigger it again.</text>
+  <rect x="596" y="515" width="556" height="106" rx="14" fill="#141f31"/>
+  <rect x="616" y="533" width="12" height="12" rx="2" fill="#ffa1b2"/>
+  <text x="640" y="544" fill="#dce7f7" font-size="15" font-weight="700">BACK AT YOUR DESK?</text>
+  <text x="616" y="572" class="body">Click Stop monitoring to end the cycle.</text>
+  <text x="616" y="596" class="body">Your activity triggers warnings too.</text>
+</svg>

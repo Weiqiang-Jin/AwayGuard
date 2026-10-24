@@ -151,7 +151,7 @@ class App:
             self.table.insert("", "end", iid=str(identifier), values=(local_time(stamp), kind, details))
 
     def sound_description(self):
-        return "警告声音：" + (self.player.path or "默认警告音 · 03.wav")
+        return "警告声音：" + (self.player.path or "默认警告音 · 00.wav")
 
     def save_sound(self, path):
         try:

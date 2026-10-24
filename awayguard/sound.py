@@ -6,7 +6,7 @@ import threading
 import time
 from pathlib import Path
 
-DEFAULT_SOUND = Path(__file__).with_name("assets") / "03.wav"
+DEFAULT_SOUND = Path(__file__).with_name("assets") / "00.wav"
 
 
 def validate_wav(path):
@@ -39,7 +39,7 @@ class SoundPlayer:
         except FileNotFoundError:
             pass
         except (OSError, ValueError) as error:
-            self.load_error = "无法加载声音设置，已使用默认警告音 03：" + str(error)
+            self.load_error = "无法加载声音设置，已使用默认警告音 00：" + str(error)
 
     def configure(self, enabled, path):
         # Commit preferences only after the new file was successfully written.

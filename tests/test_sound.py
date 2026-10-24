@@ -26,7 +26,7 @@ class SoundTests(unittest.TestCase):
         self.assertFalse(loaded.enabled)
         self.assertEqual(loaded.path, path)
 
-    def test_default_and_reset_use_bundled_03(self):
+    def test_default_and_reset_use_bundled_00(self):
         validate_wav(DEFAULT_SOUND)
         sound = Mock(SND_FILENAME=1, SND_NODEFAULT=4, SND_ALIAS=8)
         with patch.dict("sys.modules", {"winsound": sound}):
