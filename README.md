@@ -10,15 +10,19 @@ A local Windows desktop tool that alerts you when someone uses your mouse or key
 
 ### [Download AwayGuard for Windows →](https://github.com/Weiqiang-Jin/AwayGuard/releases)
 
-**No Python, terminal commands, or installation required.**
+**Recommended: install once, then launch from your desktop. No Python or terminal commands required.**
 
-1. Open **Releases** and download `AwayGuard-Windows-x64.zip` from the release's **Assets** section.
-2. Extract the ZIP and open the `AwayGuard` folder. Keep all files, including `_internal`, together.
-3. Double-click `AwayGuard.exe`, choose a mode, and press the red start button.
+1. Open **Releases** and download `AwayGuard-Setup-x64.exe` from **Assets**.
+2. Run the installer and keep **Create a desktop shortcut** selected.
+3. Open **AwayGuard** from your desktop or Start menu, choose a mode, and press the red start button.
+
+The installer uses your account's `%LOCALAPPDATA%\Programs\AwayGuard` folder. Uninstall through **Windows Settings → Apps**; your activity logs and preferences are retained.
+
+**Prefer no installation?** Download `AwayGuard-Windows-x64.zip`, extract it, and open `AwayGuard/AwayGuard.exe`. Keep the `_internal` folder beside the executable.
 
 After the countdown, the window minimizes. Activity restores it; ten idle seconds minimize it again. Press the adjacent stop button when you return.
 
-*Windows downloads will appear here as releases are published. Choose the Windows ZIP, not GitHub's automatically generated “Source code” archives.*
+*Windows downloads appear as releases are published. Choose the installer or portable ZIP, not GitHub's “Source code” archives.*
 
 ![AwayGuard desktop interface with monitoring controls and warning image](docs/images/awayguard-desktop.png)
 
@@ -69,9 +73,9 @@ After installing dependencies, you can also double-click `start.bat`.
 
 ### Build & release
 
-- **Local:** Double-click `build.bat` (Python and internet required). The folder-based app is at `dist/AwayGuard/AwayGuard.exe`; the ZIP is in `dist/`.
+- **Local:** Double-click `build.bat` (Python and internet required). It installs the signature-verified Inno Setup compiler for the current user in `.tools/`, then produces `dist/AwayGuard-Setup-x64.exe` and the portable ZIP.
 - **GitHub:** Select **Actions → Windows checks → Run workflow**, then download the build artifact.
-- **Release:** Publishing a GitHub Release triggers tests and attaches the Windows ZIP and SHA-256 checksum after a successful build.
+- **Release:** Publishing a GitHub Release triggers tests and attaches the installer, portable ZIP and SHA-256 checksums after a successful build and scan. Use a numeric version tag such as `v0.1.2`.
 
 Run tests:
 

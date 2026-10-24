@@ -16,6 +16,9 @@ A false positive is possible but has not been confirmed by Microsoft.
 - Include the resolved build dependencies and publish a ZIP SHA-256 checksum.
 - Gate GitHub artifact and release uploads on a Defender custom scan. A missing
   Defender service or scan failure blocks upload; do not silently skip it.
+- Offer a standard Inno Setup installer with per-user installation, desktop and
+  Start menu shortcuts, and a registered uninstaller. Scan this installer too.
+  Installer packaging does not replace signing or guarantee antivirus acceptance.
 
 These changes improve inspectability and release hygiene, but do not establish
 that a binary is safe or guarantee that antivirus vendors will accept it.

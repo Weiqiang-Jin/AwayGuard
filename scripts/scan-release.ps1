@@ -1,4 +1,4 @@
-param([string]$TargetPath = 'dist')
+param([string]$TargetPath = 'dist', [switch]$RequireInstaller)
 $ErrorActionPreference = 'Stop'
 $resolvedTarget = (Resolve-Path -LiteralPath $TargetPath).Path
 $status = Get-MpComputerStatus -ErrorAction Stop
@@ -14,6 +14,11 @@ if (-not (Test-Path -LiteralPath $appFolder) -or -not (Test-Path -LiteralPath $a
 }
 Start-MpScan -ScanType CustomScan -ScanPath $appFolder -ErrorAction Stop
 Start-MpScan -ScanType CustomScan -ScanPath $archivePath -ErrorAction Stop
+$installerPath = Join-Path $resolvedTarget 'AwayGuard-Setup-x64.exe'
+if ($RequireInstaller -and -not (Test-Path -LiteralPath $installerPath)) { throw 'Installer missing; release verification failed.' }
+if (Test-Path -LiteralPath $installerPath) {
+    Start-MpScan -ScanType CustomScan -ScanPath $installerPath -ErrorAction Stop
+}
 $detections = @(Get-MpThreatDetection -ErrorAction Stop | Where-Object {
     ($_.InitialDetectionTime -ge $scanStart -or $_.LastThreatStatusChangeTime -ge $scanStart) -and
     (@($_.Resources | Where-Object { $_.IndexOf($resolvedTarget, [StringComparison]::OrdinalIgnoreCase) -ge 0 }).Count -gt 0)
@@ -26,4 +31,5 @@ if (-not (Test-Path -LiteralPath (Join-Path $resolvedTarget 'AwayGuard/AwayGuard
     throw 'Expected executable is missing after the scan; release verification failed.'
 }
 if (-not (Test-Path -LiteralPath $archivePath)) { throw 'Release ZIP missing after scan.' }
+if ($RequireInstaller -and -not (Test-Path -LiteralPath $installerPath)) { throw 'Installer missing after scan.' }
 Write-Host 'Defender scan completed without a matching new detection. This is not a guarantee against future detections.'

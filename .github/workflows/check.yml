@@ -34,13 +34,19 @@ jobs:
       - run: python -m venv .build-venv
       - run: ./.build-venv/Scripts/python.exe -m pip install -r requirements-build.txt
       - run: ./scripts/build.ps1 -PythonExe ./.build-venv/Scripts/python.exe
+      - run: ./scripts/setup-installer-tool.ps1
+      - name: Build installer
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: ./scripts/build-installer.ps1 -Version "$env:RELEASE_TAG"
       - name: Scan release before upload
-        run: ./scripts/scan-release.ps1
+        run: ./scripts/scan-release.ps1 -RequireInstaller
       - uses: actions/upload-artifact@v4
         with:
           name: AwayGuard-Windows
           path: |
             dist/AwayGuard-Windows-x64.zip
+            dist/AwayGuard-Setup-x64.exe
             dist/SHA256SUMS.txt
       - name: Attach Windows download to published release
         if: github.event_name == 'release'
@@ -48,4 +54,4 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
           RELEASE_TAG: ${{ github.event.release.tag_name }}
-        run: gh release upload "$env:RELEASE_TAG" dist/AwayGuard-Windows-x64.zip dist/SHA256SUMS.txt --clobber
+        run: gh release upload "$env:RELEASE_TAG" dist/AwayGuard-Windows-x64.zip dist/AwayGuard-Setup-x64.exe dist/SHA256SUMS.txt --clobber
