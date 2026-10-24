@@ -31,8 +31,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python -m pip install . pyinstaller==6.16.0
-      - run: ./scripts/build.ps1
+      - run: python -m venv .build-venv
+      - run: ./.build-venv/Scripts/python.exe -m pip install -r requirements-build.txt
+      - run: ./scripts/build.ps1 -PythonExe ./.build-venv/Scripts/python.exe
+      - name: Scan release before upload
+        run: ./scripts/scan-release.ps1
       - uses: actions/upload-artifact@v4
         with:
           name: AwayGuard-Windows

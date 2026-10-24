@@ -13,7 +13,7 @@ A local Windows desktop tool that alerts you when someone uses your mouse or key
 **No Python, terminal commands, or installation required.**
 
 1. Open **Releases** and download `AwayGuard-Windows-x64.zip` from the release's **Assets** section.
-2. Extract the ZIP to a folder on your computer.
+2. Extract the ZIP and open the `AwayGuard` folder. Keep all files, including `_internal`, together.
 3. Double-click `AwayGuard.exe`, choose a mode, and press the red start button.
 
 After the countdown, the window minimizes. Activity restores it; ten idle seconds minimize it again. Press the adjacent stop button when you return.
@@ -69,7 +69,7 @@ After installing dependencies, you can also double-click `start.bat`.
 
 ### Build & release
 
-- **Local:** Double-click `build.bat` (Python and internet required). Outputs appear in `dist/`.
+- **Local:** Double-click `build.bat` (Python and internet required). The folder-based app is at `dist/AwayGuard/AwayGuard.exe`; the ZIP is in `dist/`.
 - **GitHub:** Select **Actions → Windows checks → Run workflow**, then download the build artifact.
 - **Release:** Publishing a GitHub Release triggers tests and attaches the Windows ZIP and SHA-256 checksum after a successful build.
 
@@ -82,6 +82,8 @@ python -m unittest discover -s tests -v
 ## Privacy & limits
 
 Logs and sound preferences stay in `%LOCALAPPDATA%\AwayGuard`. Logs are unencrypted and not tamper-proof. The app cannot identify the person using the computer, and exiting stops monitoring. Use **Win + L** to prevent access. Distributed builds are unsigned.
+
+If antivirus blocks a download, do not disable protection. See [release verification and vendor review](docs/SECURITY-RELEASE.md). GitHub release uploads require a successful Defender scan; this does not guarantee acceptance by every security product.
 
 ## License
 
