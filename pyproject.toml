@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "awayguard"
+version = "0.1.0"
+description = "Visible local Windows activity alerts and lock/unlock auditing"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+classifiers = ["Operating System :: Microsoft :: Windows", "Programming Language :: Python :: 3"]
+dependencies = ["Pillow>=10.4,<13"]
+
+[project.gui-scripts]
+awayguard = "awayguard.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["awayguard*"]
+
+[tool.setuptools.package-data]
+awayguard = ["assets/*.jpg", "assets/*.wav", "assets/*.md"]

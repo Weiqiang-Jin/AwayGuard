@@ -1,0 +1,48 @@
+name: Windows checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  release:
+    types: [published]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        python: ['3.10', '3.12', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m unittest discover -s tests -v
+      - run: python -m compileall -q awayguard
+  build:
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'release'
+    needs: test
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install . pyinstaller==6.16.0
+      - run: ./scripts/build.ps1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: AwayGuard-Windows
+          path: |
+            dist/AwayGuard-Windows-x64.zip
+            dist/SHA256SUMS.txt
+      - name: Attach Windows download to published release
+        if: github.event_name == 'release'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: gh release upload "$env:RELEASE_TAG" dist/AwayGuard-Windows-x64.zip dist/SHA256SUMS.txt --clobber
